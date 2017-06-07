@@ -7,7 +7,7 @@
         <a [routerLink]="['/persons', person.id]">
           {{person.name}} 
         </a>
-        <button class="btn btn-danger" (click)="delete(person, i); $event.stopPropagation()"> Delete </button> 
+        <button class="btn btn-danger" (click)="delete(person, i); $event.stopPropagation()"> X </button> 
       </li>
     </ul>
     <!-- HERE: added this error message -->

@@ -14,7 +14,7 @@ export class PeopleListComponent implements OnInit {
   errorMessage: string = '';
   isLoading: boolean = true;
   person2 = new Person();
-
+ 
   public xyz:any;
   
   constructor(private route: ActivatedRoute,
@@ -26,9 +26,9 @@ export class PeopleListComponent implements OnInit {
     this.peopleService
       .getAll()
       .subscribe(
-         /* happy path */ p => this.people = p,
-         /* error path */ e => this.errorMessage = e,
-         /* onCompleted */ () => this.isLoading = false);
+        p => this.people = p,
+        e => this.errorMessage = e,
+        () => this.isLoading = false);
   }
 
  createPersonDetails(){
@@ -52,7 +52,6 @@ export class PeopleListComponent implements OnInit {
     .subscribe(r => {
       this.people.splice (index, 1);
     });
-    this.router.navigate(['']);
 
   }
     

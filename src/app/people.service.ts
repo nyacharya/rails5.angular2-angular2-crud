@@ -65,7 +65,7 @@ private handleError(error:any) {
   }
 
   create(person: Person) : Observable<Response>{
-  console.log(JSON.stringify(person));
+  // console.log(JSON.stringify(person));
     // alert(person.name);
       return this.http
         .post(`${this.baseUrl}/people/`, 
