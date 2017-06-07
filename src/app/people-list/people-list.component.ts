@@ -15,6 +15,7 @@ export class PeopleListComponent implements OnInit {
   isLoading: boolean = true;
   person2 = new Person();
 
+  public xyz:any;
   
   constructor(private route: ActivatedRoute,
               private peopleService: PeopleService,
@@ -36,14 +37,22 @@ export class PeopleListComponent implements OnInit {
    console.log(this.person2);
       this.peopleService
           .create(this.person2)
-          .subscribe(r => console.log(`created!!! ${JSON.stringify(this.person2)}`));
+          .subscribe(r =>{
+            this.xyz = r;
+            this.person2.id = this.xyz.id;
+            this.people.push (this.person2);
+          });
           
   }
 
-  delete(person: Person){
+  delete(person: Person, index: number){
+    // alert (index);
     this.peopleService
     .delete(person.id)
-    .subscribe(r => console.log(`deleted!!! ${JSON.stringify(person)}`));
+    .subscribe(r => {
+      this.people.splice (index, 1);
+    });
+    this.router.navigate(['']);
 
   }
     

@@ -35,7 +35,8 @@ private handleError(error:any) {
    
     let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
+    if (errMsg)
+      console.error(errMsg); // log to console instead
     return Observable.throw(errMsg);
 }
 
@@ -66,11 +67,10 @@ private handleError(error:any) {
   create(person: Person) : Observable<Response>{
   console.log(JSON.stringify(person));
     // alert(person.name);
-      return this
-      .http
-      .post(`${this.baseUrl}/people/`, 
+      return this.http
+        .post(`${this.baseUrl}/people/`, 
             person, 
-            {headers: this.getHeaders()})
+            {headers: this.getHeaders()}).map((res: Response) => res.json());
   }
 
  delete(id: number): Observable<Response> {
