@@ -1,0 +1,37 @@
+  <!-- new syntax for ng-if -->
+<section *ngIf="person">
+  <section>
+    <h2>You selected: {{person.name}}</h2>
+    <h3>Description</h3>
+    <p>
+      {{person.name}} weights {{person.weight}} and is {{person.height}} tall.
+    </p>
+  </section>
+  <section>
+    <form (ngSubmit)="savePersonDetails()" #personForm="ngForm" class="form-group">
+      <div>
+        <label for="name" >Name: </label>
+        <input type="text" name="name"  required [(ngModel)]="person.name" class="form-control" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="error">
+                Name is required !!!
+            </div>
+      </div>
+      <div>
+        <label for="weight">Weight: </label>
+            <input type="number" name="weight" [(ngModel)]="person.weight" min=0 max=350 #weight="ngModel" class="form-control">
+      </div>
+      <div>
+        <label for="height">Height: </label>
+        <input type="number" name="height" [(ngModel)]="person.height"class="form-control" height="ngModel" >
+      </div>
+      <button type="submit" [disabled]="!personForm.form.valid" class="btn btn-primary">Save</button>
+
+    </form>
+  </section>
+</section>
+
+input "name" class is: {{ name.className }}
+
+
+
+<button (click)="gotoPeopleList()"> Back to people list</button>  

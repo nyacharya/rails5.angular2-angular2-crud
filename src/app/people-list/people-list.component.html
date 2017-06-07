@@ -1,0 +1,41 @@
+  <section *ngIf="isLoading && !errorMessage">
+    Loading our hyperdrives!!! Retrieving data...
+    </section>
+    <!-- this is the new syntax for ng-repeat -->
+    <ul>
+      <li *ngFor="let person of people">
+        <a [routerLink]="['/persons', person.id]">
+          {{person.name}} 
+        </a>
+        <button class="btn btn-danger" (click)="delete(person); $event.stopPropagation()"> Delete </button> 
+      </li>
+    </ul>
+    <!-- HERE: added this error message -->
+    <section *ngIf="errorMessage">
+      {{errorMessage}}
+    </section>
+
+
+<form (ngSubmit)="createPersonDetails()" #personcreateForm="ngForm" class="form-group">
+      <div>
+        <label for="name" >Name: </label>
+        <input type="text" name="name"  required [(ngModel)]="person2.name" class="form-control" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="error">
+                Name is required !!!
+            </div>
+      </div>
+      <div>
+        <label for="weight">Weight: </label>
+            <input type="number" name="weight" [(ngModel)]="person2.weight" min=0 max=350 #weight="ngModel" class="form-control">
+      </div>
+
+      <div>
+        <label for="height">Height: </label>
+        <input type="number" name="height" [(ngModel)]="person2.height" class="form-control" ngModel #height="ngModel" class="form-control" >
+      </div>
+        
+      <button type="submit" [disabled]="!personcreateForm.form.valid" class="btn btn-primary">Save</button>
+
+    </form>
+ 
+Your name is {{person2.name}} {{person2.height}} tall weighting {{person2.weight}}

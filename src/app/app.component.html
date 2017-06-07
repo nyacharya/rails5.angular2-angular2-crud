@@ -1,0 +1,9 @@
+<h1>
+  {{title}}
+</h1>
+<router-outlet></router-outlet>
+
+<br>
+<br>
+<p>The hero's birthday is {{ birthday | date:format }}</p>
+  <button (click)="toggleFormat()">Toggle Format</button>
